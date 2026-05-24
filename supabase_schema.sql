@@ -38,3 +38,22 @@ create policy "app_kv_store_delete_all"
 on public.app_kv_store
 for delete
 using (true);
+
+
+-- Refresh REST schema cache
+notify pgrst, 'reload schema';
+
+
+-- Default keys for WebApp sync
+insert into public.app_kv_store (key, value)
+values
+  ('pro_memos', '[]'::jsonb),
+  ('memo_people', '[]'::jsonb),
+  ('memo_settings', '{}'::jsonb),
+  ('memo_list_columns', '{}'::jsonb),
+  ('memo_auth_users_v1', '[]'::jsonb),
+  ('memo_auto_backup_settings_v1', '{}'::jsonb),
+  ('memo_auto_backup_latest_v1', '{}'::jsonb)
+on conflict (key) do nothing;
+
+notify pgrst, 'reload schema';
