@@ -1,9 +1,0 @@
-{
-  "name": "memo-generator-swa-api",
-  "version": "1.0.0",
-  "description": "Azure Static Web Apps API for Memo Generator Entra ID member approval",
-  "main": "index.js",
-  "dependencies": {
-    "@azure/data-tables": "^13.3.1"
-  }
-}
